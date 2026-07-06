@@ -8,7 +8,19 @@
       content="個人作品集 — 前端開發與 UI 設計"
     />
     <title>Ashley | Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
     <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+      defer
+    ></script>
     <script src="script.js" defer></script>
   </head>
   <body>
@@ -34,6 +46,7 @@
 
         <nav class="site-nav" id="site-nav" aria-label="主要導覽">
           <ul class="nav-list">
+            <li><a href="#map">地圖</a></li>
             <li><a href="#about">關於</a></li>
             <li><a href="#projects">作品</a></li>
             <li><a href="#skills">技能</a></li>
@@ -59,8 +72,12 @@
           <div class="hero-inner reveal">
             <p class="badge">Front-end · UI/UX</p>
             <h1 class="hero-title">
-              Bowen 用程式與設計，<br />
-              把想法變成可觸及的體驗。
+              <span
+                id="typewriter"
+                class="typewriter"
+                aria-label="Bowen 用程式與設計，把想法變成可觸及的體驗。"
+              ></span>
+              <span class="typewriter-cursor" aria-hidden="true"></span>
             </h1>
             <p class="hero-slogan">
               專注語意化 HTML、可維護 CSS 與穩健 JavaScript，
@@ -98,6 +115,24 @@
               <span class="stat-label">可及性優先</span>
             </li>
           </ul>
+        </div>
+      </section>
+
+      <section id="map" class="section section-map">
+        <div class="container">
+          <header class="section-header section-header--center reveal">
+            <p class="section-label">Location</p>
+            <h2>所在位置</h2>
+            <p class="section-lead">
+              以台北 101 為中心，歡迎預約面談或線上討論合作。
+            </p>
+          </header>
+          <div
+            id="map-container"
+            class="map-container reveal"
+            role="region"
+            aria-label="互動式地圖：台北 101 位置"
+          ></div>
         </div>
       </section>
 
@@ -336,6 +371,7 @@
         <nav class="footer-nav" aria-label="頁尾導覽">
           <p class="footer-nav__title">Menu</p>
           <ul>
+            <li><a href="#map">地圖</a></li>
             <li><a href="#about">關於</a></li>
             <li><a href="#projects">作品</a></li>
             <li><a href="#skills">技能</a></li>
@@ -374,7 +410,35 @@
             >&copy; <span id="year"></span> 你的名字. 保留所有權利。</small
           >
         </p>
+        <p class="visitor-count">
+          <small
+            >本網站已被瀏覽
+            <span id="visit-count" aria-live="polite">—</span> 次</small
+          >
+        </p>
       </div>
     </footer>
+
+    <button
+      type="button"
+      class="back-to-top"
+      id="back-to-top"
+      aria-label="回到頁面頂部"
+      hidden
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M12 19V5M5 12l7-7 7 7" />
+      </svg>
+    </button>
   </body>
 </html>

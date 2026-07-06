@@ -465,6 +465,32 @@ button {
   letter-spacing: -0.04em;
   line-height: 1.02;
   margin-bottom: 1.5rem;
+  min-height: 2.04em;
+}
+
+.typewriter {
+  display: inline;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 0.85em;
+  margin-left: 2px;
+  vertical-align: baseline;
+  background: var(--accent);
+  animation: cursor-blink 0.8s step-end infinite;
+}
+
+.typewriter-cursor.is-done {
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes cursor-blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 .hero-slogan {
@@ -514,7 +540,7 @@ button {
   box-shadow: var(--shadow-sm);
 }
 
-@media (min-width: 960px) {
+@media (min-width: 768px) {
   .hero-grid {
     grid-template-columns: 1.15fr 0.85fr;
     gap: 2rem;
@@ -572,6 +598,98 @@ button {
   .stats-grid {
     grid-template-columns: repeat(4, 1fr);
   }
+}
+
+/* ===== Map ===== */
+.section-map {
+  background: var(--bg-soft);
+  border-block: 1px solid var(--border);
+}
+
+.map-container {
+  height: 400px;
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  z-index: 1;
+}
+
+.map-container .leaflet-container {
+  height: 100%;
+  width: 100%;
+  font-family: var(--font-sans);
+  background: var(--bg-soft);
+}
+
+.map-container .leaflet-control-zoom a {
+  color: var(--text);
+  background: var(--bg-elevated);
+  border-color: var(--border);
+}
+
+.map-container .leaflet-control-zoom a:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.map-container .leaflet-control-attribution {
+  font-size: 0.65rem;
+  background: var(--header-bg);
+  color: var(--text-muted);
+  backdrop-filter: blur(8px);
+}
+
+.map-container .leaflet-control-attribution a {
+  color: var(--accent);
+}
+
+.map-marker-popup .leaflet-popup-content-wrapper {
+  background: var(--bg-elevated);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.map-marker-popup .leaflet-popup-tip {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+}
+
+.map-marker-popup .leaflet-popup-content {
+  margin: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.map-custom-marker {
+  background: transparent;
+  border: none;
+}
+
+.map-custom-marker__pin {
+  display: block;
+  width: 28px;
+  height: 28px;
+  margin: 0 auto;
+  background: var(--accent);
+  border: 3px solid var(--bg-elevated);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: var(--shadow-sm);
+}
+
+.map-custom-marker__pin::after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin: 7px auto 0;
+  background: var(--bg-elevated);
+  border-radius: 50%;
+  transform: rotate(45deg);
 }
 
 /* ===== About / Features ===== */
@@ -935,11 +1053,20 @@ button {
   padding-top: 1.5rem;
   border-top: 1px solid var(--border);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
-.copyright {
+.copyright,
+.visitor-count {
   color: var(--text-muted);
   font-size: 0.8125rem;
+}
+
+.visitor-count #visit-count {
+  font-weight: 700;
+  color: var(--accent);
 }
 
 @media (min-width: 768px) {
@@ -959,4 +1086,48 @@ button {
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ===== Back to top ===== */
+.back-to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 90;
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--color-charcoal);
+  border: 1px solid var(--accent);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity var(--transition), visibility var(--transition),
+    transform var(--transition), filter var(--transition);
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  filter: brightness(1.08);
+  transform: translateY(-3px);
+}
+
+.back-to-top.is-visible:hover {
+  transform: translateY(-3px);
+}
+
+@media (min-width: 768px) {
+  .back-to-top {
+    right: 2rem;
+    bottom: 2rem;
+  }
 }
